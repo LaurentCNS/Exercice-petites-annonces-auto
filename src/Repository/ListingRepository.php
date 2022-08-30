@@ -64,6 +64,17 @@ class ListingRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+
+    public function findAllByDate()
+    {
+        return $this->createQueryBuilder('l')
+            ->orderBy('l.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     public function getAnnonceById($id)
     {
         return $this->createQueryBuilder('l')
