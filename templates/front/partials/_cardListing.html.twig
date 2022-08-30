@@ -11,7 +11,7 @@
             {% else %}
                 Pas de description
             {% endif %}
-            <a href="" class="btn btn-warning mt-3">Voir l'annonce</a>
+            <a href="{{ path('app_detail', {'id': listing.id}) }}" class="btn btn-warning mt-3">Voir l'annonce</a>
         </div>
     </div>
 {% endfor %}

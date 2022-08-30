@@ -64,4 +64,16 @@ class ListingRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function getAnnonceById($id)
+    {
+        return $this->createQueryBuilder('l')
+            ->select('l','brand','model')
+            ->leftJoin('l.model','model')
+            ->leftJoin('model.brand','brand')
+            ->andWhere('l.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
