@@ -1,0 +1,17 @@
+{% for listing in listings %}
+    <div class="card me-3 mb-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ listing.title }}</h5>
+            <p>Année: {{ listing.producedYear }}</p>
+            <p>Kilométrage: {{ listing.mileage }}km</p>
+            <p>Prix: {{ listing.price }}€</p>
+            <p>
+                {% if listing.description %}
+                Description: <p>{{ listing.description }}</p>
+            {% else %}
+                Pas de description
+            {% endif %}
+            <a href="" class="btn btn-warning mt-3">Voir l'annonce</a>
+        </div>
+    </div>
+{% endfor %}
