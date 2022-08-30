@@ -26,6 +26,8 @@ Encore
     .addEntry('back_script', './assets/back/script/index.ts')
     .addStyleEntry('back_style', './assets/back/style/index.scss')
 
+    .copyFiles([{from: './assets/img', to: 'img/[path][name].[ext]'},])
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     // .enableStimulusBridge('./assets/controllers.json')

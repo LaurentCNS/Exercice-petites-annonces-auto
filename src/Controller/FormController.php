@@ -27,6 +27,8 @@ class FormController extends AbstractController
             $datas = $form->getData();
             $this->em->persist($datas);
             $this->em->flush();
+
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('front/form/index.html.twig', [
