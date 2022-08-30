@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Brand;
 use App\Form\BrandType;
 use App\Repository\BrandRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminBrandController extends AbstractController
 {
     #[Route('/', name: 'app_brand_index', methods: ['GET'])]
-    public function index(BrandRepository $brandRepository): Response
+    public function index(BrandRepository $brandRepository, Request $request, PaginatorInterface $paginator): Response
     {
+
+        // Paginator
+        $brands = $paginator->paginate(
+            $brandRepository->getAll(),
+            $request->query->getInt('page',1),4
+        );
+
         return $this->render('back/brand/index.html.twig', [
-            'brands' => $brandRepository->findAll(),
+            'brands' => $brands,
         ]);
     }
 

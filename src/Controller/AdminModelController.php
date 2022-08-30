@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Model;
 use App\Form\ModelType;
 use App\Repository\ModelRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminModelController extends AbstractController
 {
     #[Route('/', name: 'app_model_index', methods: ['GET'])]
-    public function index(ModelRepository $modelRepository): Response
+    public function index(ModelRepository $modelRepository, Request $request, PaginatorInterface $paginator): Response
     {
+
+        // Paginator
+        $models = $paginator->paginate(
+            $modelRepository->getAll(),
+            $request->query->getInt('page',1),8
+        );
+
+
         return $this->render('back/model/index.html.twig', [
-            'models' => $modelRepository->findAll(),
+            'models' => $models,
         ]);
     }
 

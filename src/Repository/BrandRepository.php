@@ -63,4 +63,14 @@ class BrandRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+    public function getAll(): array
+    {
+        return $this->createQueryBuilder('b')
+            ->orderBy('b.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

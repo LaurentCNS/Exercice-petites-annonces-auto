@@ -34,6 +34,8 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation d-flex justify-content-center mt-2">
+        {{ knp_pagination_render(models) }}
+    </div>
 
-    <a href="{{ path('app_model_new') }}">Create new</a>
 {% endblock %}

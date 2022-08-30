@@ -63,4 +63,14 @@ class ModelRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function getAll(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }
