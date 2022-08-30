@@ -24,6 +24,10 @@ Creer la base de données :
 
 ```symfony console doctrine:database:create```
 
+Lancer les migrations :  
+
+```symfony console doctrine:migrations:migrate```
+
 ## Lancer le projet
 
 Lancer le serveur symfony :  
